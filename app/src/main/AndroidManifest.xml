@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Animation_Klimov">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentations.ActivityContact"
+            android:exported="false" />
+        <activity
+            android:name=".presentations.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
