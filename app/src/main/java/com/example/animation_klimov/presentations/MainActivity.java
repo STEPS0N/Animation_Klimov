@@ -34,11 +34,13 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        PermissionManager.GetPermission(this);
-
         llContacts = findViewById(R.id.llContacts);
 
-        getContacts();
+        if (PermissionManager.CheckPermissions(this)) {
+            getContacts();
+        } else {
+            PermissionManager.GetPermission(this);
+        }
     }
 
     public void getContacts() {
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tvName = viewContact.findViewById(R.id.tvName);
         TextView tvPhone = viewContact.findViewById(R.id.tvPhone);
-        TextView ivPhoto = viewContact.findViewById(R.id.ivPhoto);
-        TextView cvPhoto = viewContact.findViewById(R.id.cvPhoto);
+        ImageView ivPhoto = viewContact.findViewById(R.id.ivPhoto);
+        View cvPhoto = viewContact.findViewById(R.id.cvPhoto);
         ImageView btnCall = viewContact.findViewById(R.id.btnCall);
 
         tvName.setText(name);
