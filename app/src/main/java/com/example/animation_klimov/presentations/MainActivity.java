@@ -62,14 +62,15 @@ public class MainActivity extends AppCompatActivity {
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID));
             String photoUri = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
 
-            addContact(name, number, photoUri);
+            addContact(name, number, photoUri, contactId);
         }
         cursor.close();
     }
 
-    public void addContact(String name, String phone, String photoUri) {
+    public void addContact(String name, String phone, String photoUri, String contactId) {
         View viewContact = LayoutInflater.from(this).inflate(R.layout.item_contact, llContacts, false);
 
         TextView tvName = viewContact.findViewById(R.id.tvName);
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, ActivityContact.class);
 
             intent.putExtra("name", name);
-            intent.putExtra("phone", phone);
+            intent.putExtra("contactId", contactId);
             intent.putExtra("photoUri", photoUri);
 
             Bundle bundle = null;
